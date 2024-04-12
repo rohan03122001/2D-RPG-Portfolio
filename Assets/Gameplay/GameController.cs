@@ -1,21 +1,51 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using MarksAssets.LaunchURLWebGL;
 using UnityEngine;
-
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public enum GameState { FreeRoam, Dialog , Pause, Menu, cutscene}
 
 
-public class GameController : MonoBehaviour
+public class GameController : MonoBehaviour, IPointerDownHandler
 {
+    //
+
+    [Serializable]
+    public class ButtonPressEvent : UnityEvent { }
+
+    public ButtonPressEvent OnPress = new ButtonPressEvent();
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        //OnPress.Invoke();
+    }
+
+    public void OpenLinkJSPlugin()
+    {
+        Debug.Log("INSIDE OPENJSPLUGIN");
+#if !UNITY_EDITOR
+        
+		openWindow("https://rohanbhujbal.vercel.app/");
+#endif
+    }
+
+    [DllImport("__Internal")]
+    private static extern void openWindow(string url);
+
+
+    //
     [SerializeField] PlayerController playerController;
     public bool interactingWithComputer = false;   
     
     public static GameController instance { get; private set; }
 
     MenuController menuController;
-
     private void Awake()
     {
         menuController = GetComponent<MenuController>();
@@ -74,8 +104,9 @@ public class GameController : MonoBehaviour
             //    }
             //};
 
-            if (Input.GetKeyDown(KeyCode.Z) && interactingWithComputer)
+            if ((Input.GetKeyDown(KeyCode.Z) || SimpleInput.GetButtonDown("Z")) && interactingWithComputer)
             {
+
                 state = GameState.Menu;
                 //AudioManager.instance.PlaySfx(Computer.instance.Bootup);
                 StartCoroutine(Delay());
@@ -96,26 +127,40 @@ public class GameController : MonoBehaviour
     {
         if (selectedItem == 0)
         {
+            OpenLinkJSPlugin();
+            OnPress.Invoke();
             Debug.Log("First Option");
-            Application.OpenURL("https://rohanbhujbal.vercel.app/");
-        }else if(selectedItem == 1)
+            //LaunchURLWebGL.instance.launchURLBlank("https://rohanbhujbal.vercel.app/");
+            //Application.ExternalEval("window.open(\"https://rohanbhujbal.vercel.app/\")");
+        }
+        else if(selectedItem == 1)
         {
+         
             Debug.Log("Second Option");
-            Application.OpenURL("https://rohanbhujbal.vercel.app/assets/resume-example.pdf");
+            Application.ExternalEval("window.open(\"https://rohanbhujbal.vercel.app/assets/resume-example.pdf\")");
+           // Application.OpenURL("https://rohanbhujbal.vercel.app/assets/resume-example.pdf");
         }
         else if (selectedItem == 2)
         {
             Debug.Log("Third Option");
-            Application.OpenURL("https://github.com/rohan03122001");
+            Application.ExternalEval("window.open(\"https://github.com/rohan03122001\")");
+            //Application.OpenURL("https://github.com/rohan03122001");
         }
         else if (selectedItem == 3)
         {
-            Debug.Log("fourth Option");
+            menuController.CloseMenu();
+            state = GameState.FreeRoam;
+            GameController.instance.interactingWithComputer = false;
+            StartCoroutine(RohanTrigger.instance.TriggerNPC());
+        }
+        else if (selectedItem == 4)
+        {
+            Debug.Log("fifth Option");
             menuController.CloseMenu();
             state = GameState.FreeRoam;
             GameController.instance.interactingWithComputer = false;
         }
-        else if (Input.GetKeyDown(KeyCode.X))
+        else if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
         {
             menuController.CloseMenu();
             state = GameState.FreeRoam;
@@ -133,4 +178,6 @@ public class GameController : MonoBehaviour
         menuController.OpenMenu();
         Debug.Log("DelayEnd");
     }
+
+
 }

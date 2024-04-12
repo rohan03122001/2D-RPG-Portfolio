@@ -582,9 +582,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog:
     lines:
-    - Why the lab is closed today?
-    - It's because  Professor Oak is busy helping that Rohan land his dream coding
-      job!
+    - Sorry the lab is closed today.
+    - Professor Oak's beloved Arcanine went missing earlier! The poor man has been
+      frantically searching all over town.
   movementPattern: []
   timeBetweenPatterns: 0
 --- !u!61 &160341719
@@ -24749,7 +24749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6712007823306992297, guid: 109dae5c948dd99448ccdc2eacf398ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.72
+      value: 4.744
       objectReference: {fileID: 0}
     - target: {fileID: 6712007823306992297, guid: 109dae5c948dd99448ccdc2eacf398ee, type: 3}
       propertyPath: m_LocalPosition.z

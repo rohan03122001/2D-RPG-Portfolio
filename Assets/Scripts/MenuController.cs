@@ -13,6 +13,11 @@ public class MenuController : MonoBehaviour
     public event Action<int> onMenuSelected;
     public event Action onBack;
 
+    public GameObject moveUp;
+    public GameObject ScrollUp;
+    public GameObject moveDown;
+    public GameObject ScrollDown;
+
     int selectedItem = 0;
     private void Awake()
     {
@@ -26,13 +31,22 @@ public class MenuController : MonoBehaviour
 
     public void OpenMenu()
     {
-        
+        moveUp.SetActive(false);
+        ScrollUp.SetActive(true);
+        moveDown.SetActive(false);
+        ScrollDown.SetActive(true);
+
         menu.SetActive(true);
         UpdateItemSelection();
     }
 
     public void CloseMenu()
     {
+        moveUp.SetActive(true);
+        ScrollUp.SetActive(false);
+        moveDown.SetActive(true);
+        ScrollDown.SetActive(false);
+
         menu.SetActive(false);
         GameController.instance.interactingWithComputer = false;
         Computer.instance.screen.SetActive(false);
@@ -42,9 +56,12 @@ public class MenuController : MonoBehaviour
     {
         int prevSelection = selectedItem;
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || SimpleInput.GetButtonDown("Down"))
+        {
+
             ++selectedItem;
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow) || SimpleInput.GetButtonDown("Up"))
             --selectedItem;
 
         selectedItem = Mathf.Clamp(selectedItem,0,menuItems.Count-1);
@@ -52,11 +69,11 @@ public class MenuController : MonoBehaviour
         if(prevSelection != selectedItem)
             UpdateItemSelection();
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) || SimpleInput.GetButtonDown("Z"))
         {
             onMenuSelected?.Invoke(selectedItem);
         }
-        else if (Input.GetKeyDown(KeyCode.X))
+        else if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
         {
             GameController.instance.interactingWithComputer = false;
             onBack?.Invoke();

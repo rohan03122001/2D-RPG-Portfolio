@@ -1,17 +1,41 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public Camera Camera;
+    public GameObject Dialoguebox;
+
+    #region Webgl on mobile check
+
+    [DllImport(dllName: "__Internal")]
+    private static extern bool IsMobile();
+
+    public bool isMobile()
+    {
+#if !UNITY_EDITOR && UNITY_WEBGL
+return IsMobile();
+#endif
+        Debug.Log("not reached");
+        return false;
+    }
+
+    #endregion
     //public LayerMask solidObjects;
     //public LayerMask interactableLayer;
     //public float moveSpeed;
     //private bool isMoving;
     //private bool isWalkable = true;
 
+    public GameObject mobileController;
+
+    public static PlayerController instance;
 
     //public event Action<Collider2D> onEnterNPCview;
     private Vector2 input;
@@ -20,12 +44,15 @@ public class PlayerController : MonoBehaviour
     private Character character;
     private void Awake()
     {
+        instance = this;
         //animator = GetComponent<Animator>();
         character = GetComponent<Character>();
     }
     // Start is called before the first frame update
     void Start()
     {
+        
+        //up.onClick.AddListener(buttonUP);
         character.Animator.IsMoving = false;
         GameController.instance.state = GameState.cutscene;
         //onEnterNPCview?.Invoke(collider);
@@ -35,12 +62,27 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     public void HandleUpdate()
     {
+        if (isMobile())
+        {
+            //Dialoguebox.transform.position = new Vector3(Dialoguebox.transform.position.x, Dialoguebox.transform.position.y+50f);
+            Camera.orthographicSize = 8;
+            mobileController.SetActive(true);
+
+        }
         if (!character.IsMoving)
         {
-            input.x = Input.GetAxisRaw("Horizontal");
-            input.y = Input.GetAxisRaw("Vertical");
-        
-            if(input.x != 0) input.y = 0;
+            //
+
+
+            //
+            input.x = SimpleInput.GetAxisRaw("Horizontal");
+            //input.x = Input.GetAxisRaw("Horizontal");
+            //input.y = Input.GetAxisRaw("Vertical");
+            input.y = SimpleInput.GetAxisRaw("Vertical");
+            // input.x = SimpleInput
+
+            //Debug.Log(input);
+            if (input.x != 0) input.y = 0;
 
             if(input != Vector2.zero)
             {
@@ -52,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
         character.HandleUpdate();
 
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) || SimpleInput.GetButtonDown("Z"))
         {
             character.Animator.IsMoving = false;
             Interact();
@@ -103,4 +145,10 @@ public class PlayerController : MonoBehaviour
     //    }
     //}
     public Character Character => character;
+
+    public void buttonUP()
+    {
+
+    }
+    
 }
