@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1881547010245555648}
   - component: {fileID: 798042904197825591}
   m_Layer: 5
-  m_Name: MenuItem (1)
+  m_Name: Resume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 3684883655830458475}
   - component: {fileID: 1017788296071432389}
   m_Layer: 5
-  m_Name: MenuItem
+  m_Name: aboutme
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -542,6 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Url: sample.html
   status: {fileID: 8249555743025509947}
+  webViewObject: {fileID: 0}
 --- !u!1 &2307627793292345838
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +555,7 @@ GameObject:
   - component: {fileID: 2601198467060295781}
   - component: {fileID: 7355586599566406221}
   m_Layer: 5
-  m_Name: MenuItem (2)
+  m_Name: github
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1184,6 +1185,7 @@ MonoBehaviour:
   Camera: {fileID: 3599156605783645068}
   Dialoguebox: {fileID: 0}
   mobileController: {fileID: 5940791994095987126}
+  input: {x: 0, y: 0}
 --- !u!58 &2966181185321133834
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1367,7 +1369,7 @@ GameObject:
   - component: {fileID: 5594877467670343908}
   - component: {fileID: 4853228868224429544}
   m_Layer: 5
-  m_Name: MenuItem (3)
+  m_Name: myfile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1501,7 +1503,7 @@ GameObject:
   - component: {fileID: 8055981223810623045}
   - component: {fileID: 6217830240010290259}
   m_Layer: 5
-  m_Name: MenuItem (5)
+  m_Name: linkedIn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2068,7 +2070,7 @@ GameObject:
   - component: {fileID: 967221115998958087}
   - component: {fileID: 5221838735781438042}
   m_Layer: 5
-  m_Name: MenuItem (4)
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2221,11 +2223,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 427119417456847303}
-  - {fileID: 6743123892938179843}
-  - {fileID: 1195049190463880696}
-  - {fileID: 7738558591568551628}
   - {fileID: 1848045040370611711}
+  - {fileID: 427119417456847303}
+  - {fileID: 7738558591568551628}
+  - {fileID: 1195049190463880696}
+  - {fileID: 6743123892938179843}
   - {fileID: 2995986274839688851}
   m_Father: {fileID: 964624531930329694}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

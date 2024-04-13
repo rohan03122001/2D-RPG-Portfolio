@@ -103,54 +103,31 @@ public class GameController : MonoBehaviour
     {
         if (selectedItem == 0)
         {
-            if (playerController.isMobile())
-            {
-                webview1.SetActive(true);
-                
-               // if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
-                    //webview1Script.CloseWebView();
-            }
-            else
-            {
-               Application.OpenURL("https://rohanbhujbal.vercel.app/");
-            }
+            menuController.CloseMenu();
+            state = GameState.FreeRoam;
+            GameController.instance.interactingWithComputer = false;
+            StartCoroutine(RohanTrigger.instance.TriggerNPC());
+
+            
             //webview1.OpenURL("https://rohanbhujbal.vercel.app/");
 }
         else if(selectedItem == 1)
         {
-
             if (playerController.isMobile())
             {
-                SampleWebView.Instance.webViewObject.SetVisibility(true);
                 webview1.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
-                    webview1.SetActive(false);
+
+                // if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
+                //webview1Script.CloseWebView();
             }
             else
             {
-                Debug.Log("Second Option");
-                Application.OpenURL("https://rohanbhujbal.vercel.app/assets/resume-example.pdf");
+                Application.OpenURL("https://rohanbhujbal.vercel.app/");
             }
-           // Application.OpenURL("https://rohanbhujbal.vercel.app/assets/resume-example.pdf");
         }
         else if (selectedItem == 2)
         {
-            if (playerController.isMobile())
-            {
-                SampleWebView.Instance.webViewObject.SetVisibility(true);
-                webview1.SetActive(true);
-                if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
-                    webview1.SetActive(false);
-            }
-            else { 
-            
-                 Debug.Log("Third Option");
-           // Application.ExternalEval("window.open(\"https://github.com/rohan03122001\")");
-                 Application.OpenURL("https://github.com/rohan03122001");
-            }
-        }
-        else if (selectedItem == 3)
-        {
+
             if (playerController.isMobile())
             {
                 SampleWebView.Instance.webViewObject.SetVisibility(true);
@@ -165,13 +142,41 @@ public class GameController : MonoBehaviour
                 // Application.ExternalEval("window.open(\"https://www.linkedin.com/in/rohan-bhujbal-031574213/\")");
                 Application.OpenURL("https://www.linkedin.com/in/rohan-bhujbal-031574213/");
             }
+
+        }
+        else if (selectedItem == 3)
+        {
+            if (playerController.isMobile())
+            {
+                SampleWebView.Instance.webViewObject.SetVisibility(true);
+                webview1.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
+                    webview1.SetActive(false);
+            }
+            else
+            {
+
+                Debug.Log("Third Option");
+                // Application.ExternalEval("window.open(\"https://github.com/rohan03122001\")");
+                Application.OpenURL("https://github.com/rohan03122001");
+            }
         }
         else if (selectedItem == 4)
         {
-            menuController.CloseMenu();
-            state = GameState.FreeRoam;
-            GameController.instance.interactingWithComputer = false;
-            StartCoroutine(RohanTrigger.instance.TriggerNPC());
+
+            if (playerController.isMobile())
+            {
+                SampleWebView.Instance.webViewObject.SetVisibility(true);
+                webview1.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
+                    webview1.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("Second Option");
+                Application.OpenURL("https://rohanbhujbal.vercel.app/assets/resume-example.pdf");
+            }
+
         }
         else if (selectedItem == 5)
         {
