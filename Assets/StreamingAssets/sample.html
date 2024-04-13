@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ABOUT ME</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .disclaimer {
+            margin-bottom: 20px;
+            background-color: #ff4d4d;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 5px;
+        }
+
+        .links {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .link {
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .link a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            background-color: #3b3b3b;
+            border-radius: 5px;
+            text-align: center;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        .link a:hover {
+            background-color: #ff4d4d;
+        }
+
+        .exit-instruction {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="disclaimer">
+        <p>(FOR MOBILE DEVICES) Due To Security Constraints Links are unable to open automatically please open them manually by copying them. Sorry for the inconvenience.</p>
+    </div>
+    <h1>2D-RPG-Portfolio</h1>
+    <ul class="links">
+        <li class="link">
+            <a>My Website: </br> https://rohanbhujbal.vercel.app/ </a>
+        </li>
+        <li class="link">
+            <a>RESUME: </br>https://rohanbhujbal.vercel.app/assets/resume-example.pdf</a>
+        </li>
+        <li class="link">
+            <a>GITHUB:</br> https://github.com/rohan03122001</a>
+        </li>
+        <li class="link">
+            <a>LinkedIn:</br> https://www.linkedin.com/in/rohan-bhujbal-031574213/</a>
+        </li>
+    </ul>
+    <div class="exit-instruction">
+        Press the "X" key to exit this menu.
+    </div>
+</body>
+</html>

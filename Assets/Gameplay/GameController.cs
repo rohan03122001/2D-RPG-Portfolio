@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using MarksAssets.LaunchURLWebGL;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -12,34 +11,11 @@ using UnityEngine.UIElements;
 public enum GameState { FreeRoam, Dialog , Pause, Menu, cutscene}
 
 
-public class GameController : MonoBehaviour, IPointerDownHandler
+public class GameController : MonoBehaviour
 {
-    //
-
-    [Serializable]
-    public class ButtonPressEvent : UnityEvent { }
-
-    public ButtonPressEvent OnPress = new ButtonPressEvent();
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        //OnPress.Invoke();
-    }
-
-    public void OpenLinkJSPlugin()
-    {
-        Debug.Log("INSIDE OPENJSPLUGIN");
-#if !UNITY_EDITOR
-        
-		openWindow("https://rohanbhujbal.vercel.app/");
-#endif
-    }
-
-    [DllImport("__Internal")]
-    private static extern void openWindow(string url);
+    public GameObject webview1;
 
 
-    //
     [SerializeField] PlayerController playerController;
     public bool interactingWithComputer = false;   
     
@@ -127,33 +103,77 @@ public class GameController : MonoBehaviour, IPointerDownHandler
     {
         if (selectedItem == 0)
         {
-            OpenLinkJSPlugin();
-            OnPress.Invoke();
-            Debug.Log("First Option");
-            //LaunchURLWebGL.instance.launchURLBlank("https://rohanbhujbal.vercel.app/");
-            //Application.ExternalEval("window.open(\"https://rohanbhujbal.vercel.app/\")");
-        }
+            if (playerController.isMobile())
+            {
+                webview1.SetActive(true);
+                
+               // if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
+                    //webview1Script.CloseWebView();
+            }
+            else
+            {
+               Application.OpenURL("https://rohanbhujbal.vercel.app/");
+            }
+            //webview1.OpenURL("https://rohanbhujbal.vercel.app/");
+}
         else if(selectedItem == 1)
         {
-         
-            Debug.Log("Second Option");
-            Application.ExternalEval("window.open(\"https://rohanbhujbal.vercel.app/assets/resume-example.pdf\")");
+
+            if (playerController.isMobile())
+            {
+                SampleWebView.Instance.webViewObject.SetVisibility(true);
+                webview1.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
+                    webview1.SetActive(false);
+            }
+            else
+            {
+                Debug.Log("Second Option");
+                Application.OpenURL("https://rohanbhujbal.vercel.app/assets/resume-example.pdf");
+            }
            // Application.OpenURL("https://rohanbhujbal.vercel.app/assets/resume-example.pdf");
         }
         else if (selectedItem == 2)
         {
-            Debug.Log("Third Option");
-            Application.ExternalEval("window.open(\"https://github.com/rohan03122001\")");
-            //Application.OpenURL("https://github.com/rohan03122001");
+            if (playerController.isMobile())
+            {
+                SampleWebView.Instance.webViewObject.SetVisibility(true);
+                webview1.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
+                    webview1.SetActive(false);
+            }
+            else { 
+            
+                 Debug.Log("Third Option");
+           // Application.ExternalEval("window.open(\"https://github.com/rohan03122001\")");
+                 Application.OpenURL("https://github.com/rohan03122001");
+            }
         }
         else if (selectedItem == 3)
+        {
+            if (playerController.isMobile())
+            {
+                SampleWebView.Instance.webViewObject.SetVisibility(true);
+                webview1.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
+                    webview1.SetActive(false);
+            }
+            else
+            {
+
+                Debug.Log("Third Option");
+                // Application.ExternalEval("window.open(\"https://www.linkedin.com/in/rohan-bhujbal-031574213/\")");
+                Application.OpenURL("https://www.linkedin.com/in/rohan-bhujbal-031574213/");
+            }
+        }
+        else if (selectedItem == 4)
         {
             menuController.CloseMenu();
             state = GameState.FreeRoam;
             GameController.instance.interactingWithComputer = false;
             StartCoroutine(RohanTrigger.instance.TriggerNPC());
         }
-        else if (selectedItem == 4)
+        else if (selectedItem == 5)
         {
             Debug.Log("fifth Option");
             menuController.CloseMenu();
@@ -162,12 +182,13 @@ public class GameController : MonoBehaviour, IPointerDownHandler
         }
         else if (Input.GetKeyDown(KeyCode.X) || SimpleInput.GetButtonDown("X"))
         {
+            webview1.SetActive(false);
             menuController.CloseMenu();
             state = GameState.FreeRoam;
             GameController.instance.interactingWithComputer = false;
         }
 
-        
+
     }
 
     IEnumerator Delay()

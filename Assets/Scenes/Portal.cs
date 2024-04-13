@@ -11,12 +11,16 @@ public class Portal : MonoBehaviour, iPlayerTriggerable
     [SerializeField] Transform spawnPoint;
     [SerializeField] DestinationIdentifier DestinationPortal;
     [SerializeField] AudioClip Music;
-
+    [SerializeField] int xdirection;
+    [SerializeField] int ydirection;
     PlayerController Player;
    public void onPlayerTriggered(PlayerController player)
     {
-        this.Player = player;
-        StartCoroutine(SwitchScene());
+        if(player.input.x == xdirection && player.input.y == ydirection)
+        {
+            this.Player = player;
+            StartCoroutine(SwitchScene());
+        }
     }
 
     Fader fader;

@@ -2666,6 +2666,10 @@ PrefabInstance:
       value: Portal (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5813860458797206934, guid: 109dae5c948dd99448ccdc2eacf398ee, type: 3}
+      propertyPath: xdirection
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813860458797206934, guid: 109dae5c948dd99448ccdc2eacf398ee, type: 3}
       propertyPath: sceneToLoad
       value: 1
       objectReference: {fileID: 0}
@@ -16521,7 +16525,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 2
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 11
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -29394,8 +29398,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 22
     m_Data: {fileID: 1598670903, guid: 4d1f74e17bb866842a35771fbc476dc9, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -1317108580, guid: 3326135cedc50124ead80c5ff7f74d7e, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 22
     m_Data: {fileID: -1490517906, guid: 4d1f74e17bb866842a35771fbc476dc9, type: 3}
   - m_RefCount: 7
@@ -29412,8 +29416,8 @@ Tilemap:
     m_Data: {fileID: 497613763, guid: 4d1f74e17bb866842a35771fbc476dc9, type: 3}
   - m_RefCount: 27
     m_Data: {fileID: -225897507, guid: 4d1f74e17bb866842a35771fbc476dc9, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -1317108580, guid: 3326135cedc50124ead80c5ff7f74d7e, type: 3}
   - m_RefCount: 23
     m_Data: {fileID: -1570942927, guid: 4d1f74e17bb866842a35771fbc476dc9, type: 3}
   - m_RefCount: 29

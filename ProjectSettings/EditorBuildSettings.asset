@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OtherHouse.unity
     guid: 446488b18d2dd6946b9282565fec5a43
+  - enabled: 0
+    path: Assets/sample/Assets/Sample.unity
+    guid: 13305894bc19a4c0b9628a8b5b587b99
   m_configObjects: {}

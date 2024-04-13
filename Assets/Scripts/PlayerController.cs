@@ -38,7 +38,7 @@ return IsMobile();
     public static PlayerController instance;
 
     //public event Action<Collider2D> onEnterNPCview;
-    private Vector2 input;
+    public Vector2 input;
 
     //private Animator animator;
     private Character character;

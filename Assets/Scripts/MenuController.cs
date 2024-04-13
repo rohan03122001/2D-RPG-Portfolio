@@ -50,6 +50,10 @@ public class MenuController : MonoBehaviour
         menu.SetActive(false);
         GameController.instance.interactingWithComputer = false;
         Computer.instance.screen.SetActive(false);
+        GameController.instance.webview1.SetActive(false);
+        
+        SampleWebView.Instance.CloseWebView();
+        // SampleWebView.Instance.webViewObject.L'
     }
 
     public void HandleUpdate()
